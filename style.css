@@ -1,0 +1,96 @@
+.mainContainer{
+    border:solid black;
+    height:95vh;
+    text-align:center;
+}
+.topContainer{
+    border:solid blue;
+    height:60%;
+    background-image: url('https://static.fandomspot.com/images/08/2071/00-featured-route-anime-pokemon-ostgame.jpg');
+    background-size: cover;
+    background-repeat:no-repeat;
+    /* background scene */
+    display:flex;
+    justify-content:space-between;
+}
+.leftPkm{
+    border:solid orange;
+    display:flex;
+    height:180px;
+    align-self:flex-end;
+}
+.statsPikachu{
+    border:dashed 2px rgb(32, 120, 197);
+    background-color: rgba(227, 232, 211, 0.792);
+    height:80px;
+    width:150px;
+    display:flex;
+    flex-direction:column;
+    align-content:stretch;
+    align-self:flex-end;
+}
+.rightPkm{
+    border:solid orange;
+    height:180px;
+    display:flex;
+}
+.statsMagikarp{
+    border:dashed 2px rgb(32, 120, 197);
+    background-color: rgba(227, 232, 211, 0.792);
+    height:80px;
+    width:180px;
+    align-self:flex-end;
+}
+.centerContainer{
+    border: solid blue;
+    height:15%;
+    display:flex;
+}
+.centerLeft{
+    border:solid green;
+    width:30%;
+    background-color:rgba(247, 255, 196, 0.744);
+}
+.centerMid{
+    border:solid green;
+    width:30%;
+    background-color:rgba(247, 255, 196, 0.744);}
+.centerRight{
+    border:solid green;
+    width:40%;
+    background-color:rgba(247, 255, 196, 0.744);}
+.bottomContainer{
+    border:solid blue;
+    height:25%;
+    display:flex;
+    justify-content: space-between;
+}
+.bottomLeft{
+    border:solid red;
+    width:30%;
+    /* reset button
+    encounter button
+    travel button
+    shop button */
+    display:flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+}
+.button{
+    width:100px;
+    height:30px;
+}
+#pokeball{
+    align-self:center;
+}
+.bottomRight{
+    border:solid red;
+    width:30%;
+    display:flex;
+    justify-content:space-evenly;
+    align-items:center;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+    /* battle moves button */
+}

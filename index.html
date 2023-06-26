@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div class="mainContainer">
+            <div class="topContainer">
+                <div class="leftPkm">
+                    <!-- Image src replaced for every battle encounter -->
+            <img src="https://i.gifer.com/4bXB.gif" alt="" class="pikachu">
+            <!-- current stats of player pkm goes here -->
+            <div class="statsPikachu">
+                <div class="stats">Lv</div>
+                <div class="stats">HP</div>
+                <div class="stats">Attack</div>
+                <div class="stats">Speed</div>
+            </div>
+        </div>
+        <div class="rightPkm">
+            <div class="statsMagikarp">
+                <!-- stats generated in JS goes here -->
+                <div class="stats">Lv</div>
+                <div class="stats">HP</div>
+                <div class="stats">Attack</div>
+                <div class="stats">Speed</div>
+            </div>
+            <!-- Image src replaced for every battle encounter -->
+            <img src="https://25.media.tumblr.com/144d30a86c175d0d4843b26669913b30/tumblr_msu2d6x4WM1scncwdo1_500.gif" alt="" class="magikarp">
+            </div>
+        </div>
+            <div class="centerContainer">
+                <div class="centerLeft">Player inventory</div>
+                <div class="centerMid">Battle log/text box</div>
+                <div class="centerRight">Pokemon in posession</div>
+            </div>
+            <div class="bottomContainer">
+                <div class="bottomLeft">    
+                <button class="button">Reset</button>
+                <button class="button">Travel</button>
+                <button class="button">Encounter</button>
+                <button class="button">Shop</button>
+            </div>
+            <div class="bottomCenter">
+                <input type="text" class = 'playerName' placeholder='Enter your name'>
+                <input type="submit">
+            </div>
+                <div class="bottomRight">
+                <!-- generate atk moves in JS when clicking encounter-->
+                <button class="button">Move 1</button>
+                <button class="button">Move 2</button>
+                <button class="button">Move 3</button>
+                <button class="button">Move 4</button>
+                <button class="button" id="pokeball">PokeBall</button>
+            </div>
+            </div>
+        </div>
+        
+        <script src="app.js" async defer></script>
+    </body>
+</html>
