@@ -11,39 +11,47 @@
     <body>
         <div class="mainContainer">
             <div class="topContainer">
-                <div class="leftPkm">
+                <div class="leftPkmVisible">
                     <!-- Image src replaced for every battle encounter -->
             <img src="https://i.gifer.com/4bXB.gif" alt="" class="pikachu">
             <!-- current stats of player pkm goes here -->
             <div class="statsPikachu">
-                <div class="stats">Lv</div>
-                <div class="stats">HP</div>
-                <div class="stats">Attack</div>
-                <div class="stats">Speed</div>
+                <div class="pkmName">PKM Name</div>
+                <div class="lv">Lv</div>
+                <div class="hp">HP</div>
+                <div class="atk">Attack</div>
+                <div class="spd">Speed</div>
             </div>
         </div>
         <div class="rightPkm">
             <div class="statsMagikarp">
                 <!-- stats generated in JS goes here -->
-                <div class="stats">Lv</div>
-                <div class="stats">HP</div>
-                <div class="stats">Attack</div>
-                <div class="stats">Speed</div>
+                <div class="wildPkmName">PKM Name</div>
+                <div class="wildPkmLv">Lv</div>
+                <div class="wildPkmHp">HP</div>
+                <div class="wildPkmAtk">Attack</div>
+                <div class="wildPkmSpd">Speed</div>
             </div>
             <!-- Image src replaced for every battle encounter -->
             <img src="https://25.media.tumblr.com/144d30a86c175d0d4843b26669913b30/tumblr_msu2d6x4WM1scncwdo1_500.gif" alt="" class="magikarp">
             </div>
         </div>
             <div class="centerContainer">
-                <div class="centerLeft">Player inventory</div>
+                <div class="centerLeft">
+                    <div class="playerName"></div>
+                    <div class="cash"></div>
+                    <div class="pokeball"></div>
+                    <div class="pkm"></div>
+                    
+                </div>
                 <div class="centerMid">Battle log/text box</div>
                 <div class="centerRight">Pokemon in posession</div>
             </div>
             <div class="bottomContainer">
                 <div class="bottomLeft">    
                 <button class="button">Reset</button>
-                <button class="button">Travel</button>
-                <button class="button">Encounter</button>
+                <button class="button" onclick='travel()'>Travel</button>
+                <button class="button" onclick='encounter()'>Encounter</button>
                 <button class="button">Shop</button>
             </div>
             <div class="bottomCenter">
