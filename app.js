@@ -27,7 +27,6 @@ const mudkip = new generateStats();
 const totodile = new generateStats();
 const magikarp = new generateStats();
 //list of possible pkm:
-console.log("mudkip: ",mudkip.randLevel())
 //object nested in object
 let wildPKM = {//water, cave, plain
     water: [
@@ -37,7 +36,8 @@ let wildPKM = {//water, cave, plain
             lv: mudkip.randLevel(),
             hp: mudkip.randHP(),
             atk: mudkip.randATK(),
-            spd: mudkip.randSPD()
+            spd: mudkip.randSPD(),
+            moveset:[{skill:'mud shot',power:5},{skill:'bubble',power:2}]
         },
         {
             name: 'Totodile',
@@ -45,7 +45,8 @@ let wildPKM = {//water, cave, plain
             lv: totodile.randLevel(),
             hp: totodile.randHP(),
             atk: totodile.randATK(),
-            spd: totodile.randSPD()
+            spd: totodile.randSPD(),
+            moveset:[{skill:'water gun',power:3},{skill:'hyro pump',power:8}]
         },
         {
             name: 'Magicarp',
@@ -53,7 +54,8 @@ let wildPKM = {//water, cave, plain
             lv: magikarp.randLevel(),
             hp: magikarp.randHP(),
             atk: magikarp.randATK(),
-            spd: magikarp.randSPD()
+            spd: magikarp.randSPD(),
+            moveset:[{skill:'splash',power:0},{skill:'tackle',power:1}]
         }
     ],
     cave: [
@@ -137,7 +139,8 @@ let player = {
         lv: 5,
         hp: 15,
         atk: 5,
-        spd: 5
+        spd: 5,
+        moveset:[{skill:'Thunderbolt',power:10},{skill:'Iron Tail',power:8}]
     },
     pokeball: 10
     //6 pkm total
@@ -148,12 +151,16 @@ const displayStats = (foeName,foeLv,foeHp,foeAtk,foeSpd)=>{
     let lv = document.querySelector('.lv')
     let hp = document.querySelector('.hp')
     let atk = document.querySelector('.atk')
-    let spd = document.querySelector('.spd')
+    let spd = document.querySelector('.spd')    
+    let skill1 = document.querySelector('.button1')
+    let skill2 = document.querySelector('.button2')
     pkmName.innerHTML = player.team.name
     lv.innerHTML = `Lv ${player.team.lv}`
     hp.innerHTML = `HP ${player.team.hp}`
     atk.innerHTML = `Atk ${player.team.atk}`
     spd.innerHTML = `Spd ${player.team.spd}`
+    skill1.innerHTML = player.team.moveset[0].skill
+    skill2.innerHTML = player.team.moveset[1].skill
     let wildPkmName = document.querySelector('.wildPkmName')
     let wildPkmLv = document.querySelector('.wildPkmLv')
     let wildPkmHp = document.querySelector('.wildPkmHp')
@@ -164,6 +171,7 @@ const displayStats = (foeName,foeLv,foeHp,foeAtk,foeSpd)=>{
     wildPkmHp.innerHTML = `HP ${foeHp}`
     wildPkmAtk.innerHTML = `Atk ${foeAtk}`
     wildPkmSpd.innerHTML = `Spd ${foeSpd}`
+
 }
 const encounter = () => {
     let leftPkm = document.querySelector('.leftPkm')
@@ -174,7 +182,8 @@ const encounter = () => {
         let ranPkm = Math.floor(Math.random() * (3))
         //get pkm stats
         magikarp.setAttribute('src',wildPKM.water[ranPkm].img)
-        displayStats(ranPkm.name,ranPkm.lv,ranPkm.hp,ranPkm.atk,ranPkm.spd)
+        displayStats(wildPKM.water[ranPkm].name,wildPKM.water[ranPkm].lv,wildPKM.water[ranPkm].hp,wildPKM.water[ranPkm].atk,wildPKM.water[ranPkm].spd)
+
     }
 }
 let inventory = document.querySelector('.centerLeft')
