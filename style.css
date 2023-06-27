@@ -118,21 +118,41 @@
     justify-content: space-between;
     flex-wrap:wrap;
 }
-.button{
+.button,#button{
     width:100px;
     height:30px;
 }
-#pokeball{
+/* #pokeball{
     align-self:center;
-}
+} */
 .bottomRight{
     border:solid red;
     width:30%;
+    /* display:flex; */
+    /* justify-content:space-evenly; */
+    /* align-items:center; */
+    /* justify-content: space-between; */
+    /* flex-wrap:wrap; */
+    /* battle moves button */
+}
+.wildPkmSkills{
+    border:solid orange;
+    height:40%;
+    width:100%;
     display:flex;
     justify-content:space-evenly;
-    align-items:center;
-    display:flex;
-    justify-content: space-between;
     flex-wrap:wrap;
-    /* battle moves button */
+    align-items: center;
+}
+.wildPkmSkill1,.wildPkmSkill2{
+    border:solid yellow;
+}
+.playerPkmSkills{
+    border:solid orange;
+    height:60%;
+    width:100%;
+    display:flex;
+    justify-content:space-evenly;
+    flex-wrap:wrap;
+    align-items: center;
 }

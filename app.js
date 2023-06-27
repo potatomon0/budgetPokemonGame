@@ -145,15 +145,23 @@ let player = {
     pokeball: 10
     //6 pkm total
     //starts with a certain pkm (pikachu?)
-}
-const displayStats = (foeName,foeLv,foeHp,foeAtk,foeSpd)=>{
-    let pkmName = document.querySelector('.pkmName')
-    let lv = document.querySelector('.lv')
-    let hp = document.querySelector('.hp')
-    let atk = document.querySelector('.atk')
-    let spd = document.querySelector('.spd')    
-    let skill1 = document.querySelector('.button1')
-    let skill2 = document.querySelector('.button2')
+}    
+let skill1 = document.querySelector('.button1')
+let skill2 = document.querySelector('.button2')    
+let pkmName = document.querySelector('.pkmName')
+let lv = document.querySelector('.lv')
+let hp = document.querySelector('.hp')
+let atk = document.querySelector('.atk')
+let spd = document.querySelector('.spd')    
+let wildPkmSkill1 = document.querySelector('.wildPkmSkill1')
+let wildPkmSkill2 = document.querySelector('.wildPkmSkill2')   
+let wildPkmName = document.querySelector('.wildPkmName')
+let wildPkmLv = document.querySelector('.wildPkmLv')
+let wildPkmHp = document.querySelector('.wildPkmHp')
+let wildPkmAtk = document.querySelector('.wildPkmAtk')
+let wildPkmSpd = document.querySelector('.wildPkmSpd')
+const displayStats = (temp)=>{
+    // foeName,foeLv,foeHp,foeAtk,foeSpd
     pkmName.innerHTML = player.team.name
     lv.innerHTML = `Lv ${player.team.lv}`
     hp.innerHTML = `HP ${player.team.hp}`
@@ -161,29 +169,38 @@ const displayStats = (foeName,foeLv,foeHp,foeAtk,foeSpd)=>{
     spd.innerHTML = `Spd ${player.team.spd}`
     skill1.innerHTML = player.team.moveset[0].skill
     skill2.innerHTML = player.team.moveset[1].skill
-    let wildPkmName = document.querySelector('.wildPkmName')
-    let wildPkmLv = document.querySelector('.wildPkmLv')
-    let wildPkmHp = document.querySelector('.wildPkmHp')
-    let wildPkmAtk = document.querySelector('.wildPkmAtk')
-    let wildPkmSpd = document.querySelector('.wildPkmSpd')
-    wildPkmName.innerHTML = foeName
-    wildPkmLv.innerHTML = `Lv ${foeLv}`
-    wildPkmHp.innerHTML = `HP ${foeHp}`
-    wildPkmAtk.innerHTML = `Atk ${foeAtk}`
-    wildPkmSpd.innerHTML = `Spd ${foeSpd}`
 
+    wildPkmName.innerHTML = temp.name
+    wildPkmLv.innerHTML = `Lv ${temp.lv}`
+    wildPkmHp.innerHTML = `HP ${temp.hp}`
+    wildPkmAtk.innerHTML = `Atk ${temp.atk}`
+    wildPkmSpd.innerHTML = `Spd ${temp.spd}`
+    wildPkmSkill1.innerHTML = temp.moveset[0].skill
+    wildPkmSkill2.innerHTML = temp.moveset[1].skill
 }
+let currentWildPkm;
 const encounter = () => {
     let leftPkm = document.querySelector('.leftPkm')
     let magikarp = document.querySelector('.magikarp')
     if (travelCount === 0) {
         console.log('here')
+        let ranPkm = Math.floor(Math.random() * (3))//get pkm stats
         // leftPkm.classList.toggle('leftPkmVisible')
-        let ranPkm = Math.floor(Math.random() * (3))
-        //get pkm stats
         magikarp.setAttribute('src',wildPKM.water[ranPkm].img)
-        displayStats(wildPKM.water[ranPkm].name,wildPKM.water[ranPkm].lv,wildPKM.water[ranPkm].hp,wildPKM.water[ranPkm].atk,wildPKM.water[ranPkm].spd)
-
+        displayStats(wildPKM.water[ranPkm])
+        //toggle for the movesets to show up
+        //how can I prevent travel and encounter button being used during a battle?
+        currentWildPkm = wildPKM.water[ranPkm];
+    }else if(travelCount===1){
+    }
+}
+let battleLog = document.querySelector('.centerMid')
+const thunderbolt = ()=>{
+    console.log(currentWildPkm.hp)
+    if(currentWildPkm.hp >= player.team.atk){
+        currentWildPkm.hp -= player.team.atk;
+        battleLog.innerHTML=`${player.team.name} did ${player.team.atk} damage to wild ${currentWildPkm.name}`
+        wildPkmHp.innerHTML = `HP ${currentWildPkm.hp}`
     }
 }
 let inventory = document.querySelector('.centerLeft')
@@ -192,15 +209,14 @@ let cash = document.querySelector('.cash')
 let pokeball = document.querySelector('.pokeball')
 let pkm = document.querySelector('.pkm')
 playerName.innerHTML = player.name
-cash.innerHTML = player.cash
-pokeball.innerHTML = player.pokeball
-pkm.innerHTML = `${player.team.name} -- HP: ${player.team.hp}`
+cash.innerHTML = `$${player.cash}`
+pokeball.innerHTML = `Pokeball: ${player.pokeball}`
+pkm.innerHTML = `${player.team.name}`// -- HP: ${player.team.hp}
 //pkm storage object
 let pkmStorage = [
     //this storage contain more than 6 pkm
     //pkm are stored as objects in an array
 ]
-
 //shop will never fully deduct all the $ from player, if it is exact amount, shop will take pitty and leave player with $1
     //if purchase cost more than the player current cash, shop says "hey you aint got the $$"
     //if purchase less than the player's current cash, his/her cash amount get deducted
