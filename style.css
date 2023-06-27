@@ -128,12 +128,6 @@
 .bottomRight{
     border:solid red;
     width:30%;
-    /* display:flex; */
-    /* justify-content:space-evenly; */
-    /* align-items:center; */
-    /* justify-content: space-between; */
-    /* flex-wrap:wrap; */
-    /* battle moves button */
 }
 .wildPkmSkills{
     border:solid orange;
