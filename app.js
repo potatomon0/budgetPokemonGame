@@ -14,7 +14,7 @@ class generateStats {
         return 5;
     }
     randHP() {
-        return 10;
+        return 15;
     }
     randATK() {
         return 3;
@@ -211,20 +211,31 @@ const encounter = () => {
     }
 }
 //battleLog displays all actions taken by player and wild pkm
-let battleLog = document.querySelector('.centerMid')
+let battleLog = document.querySelector('.text')
 const thunderbolt = ()=>{
-    
+    //if wild pkm can survive the hit, decrease wild pkm hp
     if(currentWildPkm.hp > moveset[0].power){
         currentWildPkm.hp -= moveset[0].power;
-        battleLog.innerHTML=`${player.team.name} did ${moveset[0].power} damage to wild ${currentWildPkm.name}`
+        battleLog.innerHTML=`${player.team.name} did ${moveset[0].power} damage to wild ${currentWildPkm.name}<br>`
         wildPkmHp.innerHTML = `HP ${currentWildPkm.hp}`
         //delay then wild pkm attack
+        //select from the wild pkm's moveset and attack back
         let ranIndex = Math.floor(Math.random() * (2))
-        // if(player.team.hp > moveset){
-        //     moveset[].power
-    }else if(currentWildPkm.hp <= player.team.atk){
+        if(player.team.hp > waterMoveset[ranIndex].power){
+            player.team.hp -= waterMoveset[ranIndex].power
+            battleLog.append(`${currentWildPkm.name} used ${waterMoveset[ranIndex].skill} and did ${waterMoveset[ranIndex].power} damage`)
+        }else{
+            player.team.hp = 0;
+            alert('Blackout! Something went through your pockets and took your wealth. Go home and start again.')
+        }
+    //if wild pkm hp drops to 0 or below, wild pkm faint and battle over
+    }else if(currentWildPkm.hp <= moveset[0].power){
         //toggle away pkm, delay then toggle away?
-        battleLog.innerHTML = `${player.team.name} did ${player.team.atk} damage to wild ${currentWildPkm.name}. ${currentWildPkm.name} fainted.`
+        battleLog.innerHTML = `${player.team.name} did ${player.team.atk} damage to wild ${currentWildPkm.name}. ${currentWildPkm.name} fainted and droped something shiny ($100)`
+        player.cash+=100
+        cash.innerHTML = `$${player.cash}`
+        currentWildPkm.hp = 0
+        wildPkmHp.innerHTML = `HP ${currentWildPkm.hp}`
     }
 }
 const ironTail = ()=>{
