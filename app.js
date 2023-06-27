@@ -14,7 +14,7 @@ class generateStats {
         return 5;
     }
     randHP() {
-        return 15;
+        return 17;
     }
     randATK() {
         return 3;
@@ -191,15 +191,21 @@ const displayStats = (temp)=>{
 let currentWildPkm;
 const encounter = () => {
     //querySelect the html element for displaying player pkm
-    let leftPkm = document.querySelector('.leftPkm')
+    let leftPkmHidden = document.querySelector('.leftPkmHidden')
+    let rightPkmHidden = document.querySelector('.rightPkmHidden')
     let wildPkmImg = document.querySelector('.wildPkmImg')
+    // let leftPkmVisible = document.getElementsByClassName('.leftPkmVisible')
     //each travelCount lead to certain scene, and each scene has its own group of wild pkm
     if (travelCount === 0) {
         //ranPkm represent the index of the wildPkm in each scene
         //ex: wildPkm.water[0] === mudkip
         let ranPkm = Math.floor(Math.random() * (3))
         //toggle to show/hide player pkm and wild pkm to mimic going in battle
+        console.log('here1')
         // leftPkm.classList.toggle('leftPkmVisible')
+        // rightPkm.classList.toggle('rightPkmVisible')
+        leftPkmHidden.setAttribute('class','leftPkm')
+        rightPkmHidden.setAttribute('class','rightPkm')
         //change image source to the randomly selected pkm img
         wildPkmImg.setAttribute('src',wildPKM.water[ranPkm].img)
         displayStats(wildPKM.water[ranPkm])
@@ -224,6 +230,7 @@ const thunderbolt = ()=>{
         if(player.team.hp > waterMoveset[ranIndex].power){
             player.team.hp -= waterMoveset[ranIndex].power
             battleLog.append(`${currentWildPkm.name} used ${waterMoveset[ranIndex].skill} and did ${waterMoveset[ranIndex].power} damage`)
+            hp.innerHTML =`Hp ${player.team.hp}`
         }else{
             player.team.hp = 0;
             alert('Blackout! Something went through your pockets and took your wealth. Go home and start again.')

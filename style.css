@@ -48,15 +48,19 @@
     display:flex;
     justify-content:space-between;
 }
-.leftPkmVisible{
+/* .pikachu{
+    height:180px;
+} */
+.leftPkmHidden{
     border:solid orange;
-    visibility:visible;
+    visibility:hidden;    
     display:flex;
     height:180px;
     align-self:flex-end;
 }
 .leftPkm{
-    visibility:hidden;    
+    border:solid red;
+    visibility:visible;
     display:flex;
     height:180px;
     align-self:flex-end;
@@ -71,8 +75,15 @@
     align-content:stretch;
     align-self:flex-end;
 }
+.rightPkmHidden{
+    border:solid orange;
+    visibility:hidden;
+    height:180px;
+    display:flex;
+}
 .rightPkm{
     border:solid orange;
+    visibility:visible;
     height:180px;
     display:flex;
 }
