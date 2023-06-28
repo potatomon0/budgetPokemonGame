@@ -109,6 +109,7 @@
     border:solid black;
     height:70%;
 }
+
 .centerRight{
     border:solid green;
     width:40%;
@@ -141,17 +142,15 @@
 }
 .confirmButtonHidden{
     visibility:hidden;
-    width:100px;
+    width:220px;
     height:30px;
 }
 .confirmButton{
+    border:solid red;
     visibility:visible;
-    width:100px;
+    width:220px;
     height:30px;
 }
-/* #pokeball{
-    align-self:center;
-} */
 .bottomRightHidden{
     border:solid red;
     visibility:hidden;

@@ -191,14 +191,13 @@ const displayStats = (temp)=>{
     }
 }
 let currentWildPkm;
+let leftPkmHidden = document.querySelector('.leftPkmHidden')
+let rightPkmHidden = document.querySelector('.rightPkmHidden')
+let bottomRightHidden = document.querySelector('.bottomRightHidden')
+let wildPkmImg = document.querySelector('.wildPkmImg')
+let bottomLeft = document.querySelector('.bottomLeft')
 const encounter = () => {
     //querySelect the html element for displaying player pkm
-    let leftPkmHidden = document.querySelector('.leftPkmHidden')
-    let rightPkmHidden = document.querySelector('.rightPkmHidden')
-    let bottomRightHidden = document.querySelector('.bottomRightHidden')
-    let wildPkmImg = document.querySelector('.wildPkmImg')
-    let confirmButtonHidden = document.querySelector('.confirmButtonHidden')
-    let bottomLeft = document.querySelector('.bottomLeft')
     //each travelCount lead to certain scene, and each scene has its own group of wild pkm
     if (travelCount === 0) {
         //ranPkm represent the index of the wildPkm in each scene
@@ -208,7 +207,6 @@ const encounter = () => {
         leftPkmHidden.setAttribute('class','leftPkm')
         rightPkmHidden.setAttribute('class','rightPkm')
         bottomRightHidden.setAttribute('class','bottomRight')
-        confirmButtonHidden.setAttribute('class','confirmButton')
         bottomLeft.setAttribute('class','bottomLeftHidden')
         //change image source to the randomly selected pkm img
         wildPkmImg.setAttribute('src',wildPKM.water[ranPkm].img)
@@ -243,16 +241,23 @@ const thunderbolt = ()=>{
     //if wild pkm hp drops to 0 or below, wild pkm faint and battle over
     }else if(currentWildPkm.hp <= moveset[0].power){
         //toggle away pkm, delay then toggle away?
-        battleLog.innerHTML = `${player.team.name} did ${moveset[0].power} damage to wild ${currentWildPkm.name}. ${currentWildPkm.name} fainted and droped something shiny ($100)`
+        battleLog.innerHTML = `${player.team.name} did ${moveset[0].power} damage to wild ${currentWildPkm.name}. ${currentWildPkm.name} fainted and dropped something shiny ($100)`
         player.cash+=100
         cash.innerHTML = `$${player.cash}`
         currentWildPkm.hp = 0
         wildPkmHp.innerHTML = `HP ${currentWildPkm.hp}`
+        let confirmButtonHidden = document.querySelector('.confirmButtonHidden')
+        confirmButtonHidden.setAttribute('class','confirmButton')
     }
 }
-const wonBattle = () =>{
+const confirm = () =>{
     //confirm button
-
+    // let bottomRight = document.querySelector('.bottomRight')
+    leftPkmHidden.setAttribute('class','leftPkmHidden')
+    rightPkmHidden.setAttribute('class','rightPkmHidden')
+    bottomLeft.setAttribute('class','bottomLeft')
+    bottomRightHidden.setAttribute('class','bottomRightHidden')
+    confirmButtonHidden.setAttribute('class','confirmButtonHidden')
 }
 const ironTail = ()=>{
 }
