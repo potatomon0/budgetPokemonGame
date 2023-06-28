@@ -99,11 +99,13 @@ const travel = () => {
     if (travelCount === 0){//go from pallet town to water scene
         console.log("pallet ",travelCount)
         travelCount++
-        palletTown.classList.toggle('topContainer2')//toggle between pallet town background and water background in css
+        //palletTown.classList.toggle('topContainer2')//toggle between pallet town background and water background in css
+        //
         console.log("pallet ",travelCount)
     } else if (travelCount === 1) {
         console.log("water ",travelCount)
-        palletTown.classList.toggle('waterScene')
+        // palletTown.classList.toggle('waterScene')
+        palletTown.setAttribute('class','waterScene')
         travelCount++
         console.log("water ",travelCount)
     } else if (travelCount === 2) {
@@ -193,19 +195,21 @@ const encounter = () => {
     //querySelect the html element for displaying player pkm
     let leftPkmHidden = document.querySelector('.leftPkmHidden')
     let rightPkmHidden = document.querySelector('.rightPkmHidden')
+    let bottomRightHidden = document.querySelector('.bottomRightHidden')
     let wildPkmImg = document.querySelector('.wildPkmImg')
-    // let leftPkmVisible = document.getElementsByClassName('.leftPkmVisible')
+    let confirmButtonHidden = document.querySelector('.confirmButtonHidden')
+    let bottomLeft = document.querySelector('.bottomLeft')
     //each travelCount lead to certain scene, and each scene has its own group of wild pkm
     if (travelCount === 0) {
         //ranPkm represent the index of the wildPkm in each scene
         //ex: wildPkm.water[0] === mudkip
         let ranPkm = Math.floor(Math.random() * (3))
         //toggle to show/hide player pkm and wild pkm to mimic going in battle
-        console.log('here1')
-        // leftPkm.classList.toggle('leftPkmVisible')
-        // rightPkm.classList.toggle('rightPkmVisible')
         leftPkmHidden.setAttribute('class','leftPkm')
         rightPkmHidden.setAttribute('class','rightPkm')
+        bottomRightHidden.setAttribute('class','bottomRight')
+        confirmButtonHidden.setAttribute('class','confirmButton')
+        bottomLeft.setAttribute('class','bottomLeftHidden')
         //change image source to the randomly selected pkm img
         wildPkmImg.setAttribute('src',wildPKM.water[ranPkm].img)
         displayStats(wildPKM.water[ranPkm])
@@ -231,22 +235,26 @@ const thunderbolt = ()=>{
             player.team.hp -= waterMoveset[ranIndex].power
             battleLog.append(`${currentWildPkm.name} used ${waterMoveset[ranIndex].skill} and did ${waterMoveset[ranIndex].power} damage`)
             hp.innerHTML =`Hp ${player.team.hp}`
-        }else{
+        }else if(player.team.hp < waterMoveset[ranIndex].power){
             player.team.hp = 0;
-            alert('Blackout! Something went through your pockets and took your wealth. Go home and start again.')
+            hp.innerHTML =`Hp ${player.team.hp}`
+            battleLog.innerHTML = 'Blackout! Something went through your pockets and took your wealth. Go home and start again.'
         }
     //if wild pkm hp drops to 0 or below, wild pkm faint and battle over
     }else if(currentWildPkm.hp <= moveset[0].power){
         //toggle away pkm, delay then toggle away?
-        battleLog.innerHTML = `${player.team.name} did ${player.team.atk} damage to wild ${currentWildPkm.name}. ${currentWildPkm.name} fainted and droped something shiny ($100)`
+        battleLog.innerHTML = `${player.team.name} did ${moveset[0].power} damage to wild ${currentWildPkm.name}. ${currentWildPkm.name} fainted and droped something shiny ($100)`
         player.cash+=100
         cash.innerHTML = `$${player.cash}`
         currentWildPkm.hp = 0
         wildPkmHp.innerHTML = `HP ${currentWildPkm.hp}`
     }
 }
-const ironTail = ()=>{
+const wonBattle = () =>{
+    //confirm button
 
+}
+const ironTail = ()=>{
 }
 let inventory = document.querySelector('.centerLeft')
 let playerName = document.querySelector('.playerName')

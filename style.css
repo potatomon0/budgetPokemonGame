@@ -48,9 +48,6 @@
     display:flex;
     justify-content:space-between;
 }
-/* .pikachu{
-    height:180px;
-} */
 .leftPkmHidden{
     border:solid orange;
     visibility:hidden;    
@@ -122,13 +119,18 @@
     display:flex;
     justify-content: space-between;
 }
+.bottomLeftHidden{
+    border:solid red;
+    visibility:hidden;
+    width:30%;
+    display:flex;
+    justify-content: space-between;
+    flex-wrap:wrap;
+}
 .bottomLeft{
     border:solid red;
+    visibility:visible;
     width:30%;
-    /* reset button
-    encounter button
-    travel button
-    shop button */
     display:flex;
     justify-content: space-between;
     flex-wrap:wrap;
@@ -137,11 +139,27 @@
     width:100px;
     height:30px;
 }
+.confirmButtonHidden{
+    visibility:hidden;
+    width:100px;
+    height:30px;
+}
+.confirmButton{
+    visibility:visible;
+    width:100px;
+    height:30px;
+}
 /* #pokeball{
     align-self:center;
 } */
+.bottomRightHidden{
+    border:solid red;
+    visibility:hidden;
+    width:30%;
+}
 .bottomRight{
     border:solid red;
+    visibility: visible;
     width:30%;
 }
 .wildPkmSkills{
