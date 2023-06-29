@@ -1,4 +1,3 @@
-//pkm class (for generating random stats)
 class generateStats {
     constructor(lv, hp, atk, spd) {
         this.lv = lv;
@@ -28,7 +27,9 @@ const mudkip = new generateStats();
 const totodile = new generateStats();
 const magikarp = new generateStats();
 //list of possible pkm to encounter in different scenary: object nested in object
-let wildPKM = {//water, cave, plain
+let wildPkm;
+const pkmList = () =>{
+    wildPKM = {//water, cave, plain
     water: [
         {
             name: 'Mudkip',
@@ -84,6 +85,7 @@ let wildPKM = {//water, cave, plain
         }
     ]
 }
+}
 //array of moveset so each pokemon can randomly generate and get two from this array
 let waterMoveset = [{skill:'mud shot',power:5},{skill:'bubble',power:2},{skill:'water gun',power:3},{skill:'hyro pump',power:8},{skill:'splash',power:0},{skill:'tackle',power:1}]
 const scene = [//water, cave, plain
@@ -91,8 +93,70 @@ const scene = [//water, cave, plain
     'https://static.wikia.nocookie.net/pokemon/images/a/a2/Stony_Cave.png/revision/latest?cb=20140727075925',
     'https://preview.redd.it/a-very-limited-analysis-of-potential-signs-of-gameplay-v0-xbrpshcb65l81.png?width=640&crop=smart&auto=webp&s=28235b05631f5b9ed4049d3f77dc4a5cb67bfe32'
 ]
+//if player defeat or catches a pkm, pikachu lv++, stats grow a certian %?
+//if player catches pkm, if player.team.length < 6 push to team else dont
+//always add new pkm caught to pkmStorage
+//if player loses to a battle (other trainer or wild pkm), he/she loses $100 and if it drops below 0 he loses?
+//if player wins a battle or caught a pkm, he/she gains $100
+//player object
+// let playerName = document.getElementsByClassName('.playerName')
+let player = {//player initial setting
+    name: 'Ash',
+    cash: 500,
+    team: {
+        name: 'Pikachu',
+        lv: 5,
+        hp: 15,
+        atk: 5,
+        spd: 5,
+    },
+    pokeball: 10
+    //6 pkm total
+    //starts with a certain pkm (pikachu?)
+}
+//the skill power calculation is the pokemon atk + the set amount for each skill
+let moveset=[{skill:'Thunderbolt', power: player.team.atk + 5},{skill:'Iron Tail', power: player.team.atk+3}]
 let travelCount=0;//to determine the current scene
 let palletTown = document.querySelector('.topContainer')//game starts out with pallettown
+let currentWildPkm;
+let newWildPkmHp;
+let leftPkmHidden = document.querySelector('.leftPkmHidden')
+let rightPkmHidden = document.querySelector('.rightPkmHidden')
+let bottomRightHidden = document.querySelector('.bottomRightHidden')
+let wildPkmImg = document.querySelector('.wildPkmImg')
+let bottomLeft = document.querySelector('.bottomLeft')
+let skill1 = document.querySelector('.button1')
+let skill2 = document.querySelector('.button2')   
+let pkmName = document.querySelector('.pkmName')
+let lv = document.querySelector('.lv')
+let hp = document.querySelector('.hp')
+let atk = document.querySelector('.atk')
+let spd = document.querySelector('.spd')
+//html location for the wild pkm info
+let wildPkmSkill1 = document.querySelector('.wildPkmSkill1')
+let wildPkmSkill2 = document.querySelector('.wildPkmSkill2')   
+let wildPkmName = document.querySelector('.wildPkmName')
+let wildPkmLv = document.querySelector('.wildPkmLv')
+let wildPkmHp = document.querySelector('.wildPkmHp')
+let wildPkmAtk = document.querySelector('.wildPkmAtk')
+let wildPkmSpd = document.querySelector('.wildPkmSpd')
+let battleLog = document.querySelector('.text')
+let inventory = document.querySelector('.centerLeft')
+let playerName = document.querySelector('.playerName')
+let cash = document.querySelector('.cash')
+let pokeball = document.querySelector('.pokeball')
+let pkm = document.querySelector('.pkm')
+let confirmButtonHidden = document.querySelector('.confirmButtonHidden')
+let textbox = document.querySelector('.text')
+playerName.innerHTML = player.name
+cash.innerHTML = `$${player.cash}`
+pokeball.innerHTML = `Pokeball: ${player.pokeball}`
+pkm.innerHTML = `${player.team.name}`// -- HP: ${player.team.hp}
+//pkm storage object
+let pkmStorage = [
+    //this storage contain more than 6 pkm
+    //pkm are stored as objects in an array
+]
 //travel button changes current scene, different scene has different pokemon group to encounter
 //for now it will be water, cave, plain
 const travel = () => {
@@ -120,46 +184,7 @@ const travel = () => {
         console.log("plain ",travelCount)
     }
 }
-//if player defeat or catches a pkm, pikachu lv++, stats grow a certian %?
-//if player catches pkm, if player.team.length < 6 push to team else dont
-//always add new pkm caught to pkmStorage
-//if player loses to a battle (other trainer or wild pkm), he/she loses $100 and if it drops below 0 he loses?
-//if player wins a battle or caught a pkm, he/she gains $100
-
-//player object
-// let playerName = document.getElementsByClassName('.playerName')
-let player = {//player initial setting
-    name: 'Ash',
-    cash: 500,
-    team: {
-        name: 'Pikachu',
-        lv: 5,
-        hp: 15,
-        atk: 5,
-        spd: 5,
-    },
-    pokeball: 10
-    //6 pkm total
-    //starts with a certain pkm (pikachu?)
-}
-//the skill power calculation is the pokemon atk + the set amount for each skill
-let moveset=[{skill:'Thunderbolt', power: player.team.atk + 5},{skill:'Iron Tail', power: player.team.atk+3}]
 //html location for player pkm skill 1 & 2, name, hp, atk, spd
-let skill1 = document.querySelector('.button1')
-let skill2 = document.querySelector('.button2')   
-let pkmName = document.querySelector('.pkmName')
-let lv = document.querySelector('.lv')
-let hp = document.querySelector('.hp')
-let atk = document.querySelector('.atk')
-let spd = document.querySelector('.spd')
-//html location for the wild pkm info
-let wildPkmSkill1 = document.querySelector('.wildPkmSkill1')
-let wildPkmSkill2 = document.querySelector('.wildPkmSkill2')   
-let wildPkmName = document.querySelector('.wildPkmName')
-let wildPkmLv = document.querySelector('.wildPkmLv')
-let wildPkmHp = document.querySelector('.wildPkmHp')
-let wildPkmAtk = document.querySelector('.wildPkmAtk')
-let wildPkmSpd = document.querySelector('.wildPkmSpd')
 const displayStats = (temp)=>{
     //temp is wildPKM.water[ranPkm] where ranPkm is a number generated in encounter() so the wild pkm is selected randomly
     //display player pkm name, stats and skillset
@@ -190,19 +215,13 @@ const displayStats = (temp)=>{
         wildPkmSkill2.innerHTML = waterMoveset[ranIndex2].skill
     }
 }
-let currentWildPkm;
-let newWildPkmHp;
-let leftPkmHidden = document.querySelector('.leftPkmHidden')
-let rightPkmHidden = document.querySelector('.rightPkmHidden')
-let bottomRightHidden = document.querySelector('.bottomRightHidden')
-let wildPkmImg = document.querySelector('.wildPkmImg')
-let bottomLeft = document.querySelector('.bottomLeft')
-
 const encounter = () => {
+    pkmList()
     //querySelect the html element for displaying player pkm
     //each travelCount lead to certain scene, and each scene has its own group of wild pkm
-    wildPkmHp.innerHTML = newWildPkmHp
+    // wildPkmHp.innerHTML = newWildPkmHp
     if (travelCount === 0) {
+        pkmList()
         //ranPkm represent the index of the wildPkm in each scene
         //ex: wildPkm.water[0] === mudkip
         let ranPkm = Math.floor(Math.random() * (3))
@@ -223,8 +242,6 @@ const encounter = () => {
     }
 }
 //battleLog displays all actions taken by player and wild pkm
-let battleLog = document.querySelector('.text')
-
 const thunderbolt = ()=>{
     //if wild pkm can survive the hit, decrease wild pkm hp
     if(newWildPkmHp > moveset[0].power){
@@ -242,6 +259,7 @@ const thunderbolt = ()=>{
             player.team.hp = 0;
             hp.innerHTML =`Hp ${player.team.hp}`
             battleLog.innerHTML = 'Blackout! Something went through your pockets and took your wealth. Go home and start again.'
+            setTimeout(resetButton,2000)
         }
     //if wild pkm hp drops to 0 or below, wild pkm faint and battle over
     }else if(newWildPkmHp <= moveset[0].power){
@@ -251,11 +269,9 @@ const thunderbolt = ()=>{
         cash.innerHTML = `$${player.cash}`
         currentWildPkm.hp = 0
         wildPkmHp.innerHTML = `HP ${currentWildPkm.hp}`
-        let confirmButtonHidden = document.querySelector('.confirmButtonHidden')
         confirmButtonHidden.setAttribute('class','confirmButton')
     }
 }
-let textbox = document.querySelector('.text')
 const confirm = () =>{
     //confirm button
     // let bottomRight = document.querySelector('.bottomRight')
@@ -269,24 +285,17 @@ const confirm = () =>{
 }
 const ironTail = ()=>{
 }
-let inventory = document.querySelector('.centerLeft')
-let playerName = document.querySelector('.playerName')
-let cash = document.querySelector('.cash')
-let pokeball = document.querySelector('.pokeball')
-let pkm = document.querySelector('.pkm')
-playerName.innerHTML = player.name
-cash.innerHTML = `$${player.cash}`
-pokeball.innerHTML = `Pokeball: ${player.pokeball}`
-pkm.innerHTML = `${player.team.name}`// -- HP: ${player.team.hp}
-//pkm storage object
-let pkmStorage = [
-    //this storage contain more than 6 pkm
-    //pkm are stored as objects in an array
-]
-//shop will never fully deduct all the $ from player, if it is exact amount, shop will take pitty and leave player with $1
-    //if purchase cost more than the player current cash, shop says "hey you aint got the $$"
-    //if purchase less than the player's current cash, his/her cash amount get deducted
-//reset button to restart game
-//empty out pkmStorage, pkm team, and reset player cash to 500
-//encounter button: meet wild pkm
-//when clicked, 
+const resetButton=()=>{
+    console.log('reset')
+    player.cash = 500;
+    cash.innerHTML = `$${player.cash}`;
+    player.pokeball = 10;
+    pkmStorage = [];
+    player.team.hp = 15;
+    battleLog.innerHTML = '';
+    confirmButtonHidden.setAttribute('class','confirmButtonHidden')
+    bottomLeft.setAttribute('class','bottomLeft')
+    bottomRightHidden.setAttribute('class','bottomRightHidden')
+    leftPkmHidden.setAttribute('class','leftPkmHidden')
+    rightPkmHidden.setAttribute('class','rightPkmHidden')
+}
