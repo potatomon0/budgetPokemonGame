@@ -62,6 +62,20 @@
     height:180px;
     align-self:flex-end;
 }
+/* .leftMiniContainer{
+    display:flex;
+    flex-direction:column;
+} */
+.animation1{
+    border:solid orange;
+    height:80px;
+}
+/* .pikaImg{
+
+} */
+.thunder{
+    height:80px;
+}
 .statsPikachu{
     border:dashed 2px rgb(32, 120, 197);
     background-color: rgba(227, 232, 211, 0.792);
