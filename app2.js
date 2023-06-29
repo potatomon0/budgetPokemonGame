@@ -270,6 +270,7 @@ const thunderbolt = ()=>{
         currentWildPkm.hp = 0
         wildPkmHp.innerHTML = `HP ${currentWildPkm.hp}`
         confirmButtonHidden.setAttribute('class','confirmButton')
+        bottomRightHidden.setAttribute('class','bottomRightHidden')
     }
 }
 const confirm = () =>{
@@ -295,7 +296,6 @@ const resetButton=()=>{
     battleLog.innerHTML = '';
     confirmButtonHidden.setAttribute('class','confirmButtonHidden')
     bottomLeft.setAttribute('class','bottomLeft')
-    bottomRightHidden.setAttribute('class','bottomRightHidden')
     leftPkmHidden.setAttribute('class','leftPkmHidden')
     rightPkmHidden.setAttribute('class','rightPkmHidden')
 }
