@@ -110,7 +110,8 @@ const pkmList = () => {
     }
 }
 //array of moveset so each pokemon can randomly generate and get two from this array
-let waterMoveset = [{ skill: 'mud shot', power: 5 }, { skill: 'bubble', power: 2 }, { skill: 'water gun', power: 3 }, { skill: 'hyro pump', power: 8 }, { skill: 'splash', power: 0 }, { skill: 'tackle', power: 1 }]
+let palletMoveset = [{ skill: 'Tackle', power: 1 }, { skill: 'Quick Attack', power: 3 }, { skill: 'Cut', power: 2 }, { skill: 'Pluck', power: 2 }]
+let waterMoveset = [{ skill: 'Mud Shot', power: 5 }, { skill: 'Bubble', power: 2 }, { skill: 'Water Gun', power: 3 }, { skill: 'Hyro Pump', power: 8 }, { skill: 'Splash', power: 0 }, { skill: 'Tackle', power: 1 }]
 const scene = [//water, cave, plain
     'https://pm1.aminoapps.com/7243/46d5cfd672a1e2fca16c78d728e2b10cb57f7ce0r1-669-521v2_hq.jpg',
     'https://static.wikia.nocookie.net/pokemon/images/a/a2/Stony_Cave.png/revision/latest?cb=20140727075925',
@@ -145,7 +146,7 @@ let leftPkmHidden = document.querySelector('.leftPkmHidden')
 let rightPkmHidden = document.querySelector('.rightPkmHidden')
 let bottomRightHidden = document.querySelector('.bottomRightHidden')
 let wildPkmImg = document.querySelector('.wildPkmImg')
-let bottomLeft = document.querySelector('.bottomLeft')
+let bottomLeft = document.querySelector('.bottomLeftHidden')
 let skill1 = document.querySelector('.button1')
 let skill2 = document.querySelector('.button2')
 let pkmName = document.querySelector('.pkmName')
@@ -165,40 +166,64 @@ let battleLog = document.querySelector('.text')
 let inventory = document.querySelector('.centerLeft')
 let playerName = document.querySelector('.playerName')
 let cash = document.querySelector('.cash')
-let pokeball = document.querySelector('.pokeball')
+let pokeball = document.querySelector('.pokeballAmt')
 let pkm = document.querySelector('.pkm')
 let confirmButtonHidden = document.querySelector('.confirmButtonHidden')
 let textbox = document.querySelector('.text')
 let pikaImg = document.querySelector('.pikachu')
+let bottomCenter = document.querySelector('.bottomCenter')
+let centerLeft = document.querySelector('.centerLeftHidden')
 playerName.innerHTML = player.name
 cash.innerHTML = `$${player.cash}`
 pokeball.innerHTML = `Pokeball: ${player.pokeball}`
 pkm.innerHTML = `${player.team.name}`// -- HP: ${player.team.hp}
 let backgroundScene = document.querySelector('.topContainer')//game starts out with pallettown
+let startGame = document.querySelector('.startGame')
 //pkm storage object
+let travelCount;//to determine the current scene
 let pkmStorage = [
     //this storage contain more than 6 pkm
     //pkm are stored as objects in an array
 ]
 //travel button changes current scene, different scene has different pokemon group to encounter
-//for now it will be water, cave, plain
-let travelCount=0;//to determine the current scene
+//for now it will be palletTown, water, cave, plain
+const start = ()=>{
+    let bottomLeft = document.querySelector('.bottomLeftHidden')
+    bottomLeft.setAttribute('class','bottomLeft')
+    backgroundScene.setAttribute('class','palletTown')
+    travelCount = 0;
+    startGame.setAttribute('class','startGameHidden')
+    centerLeft.setAttribute('class','centerLeft')
+}
 const travel = () => {
-    console.log(travelCount)
-    if (travelCount === 3) {//go from pallet town to water scene
-        backgroundScene.setAttribute('class','topContainer')
-        travelCount=0
-    } else if (travelCount === 0) {
+    if (travelCount === 0) {//go from pallet town to water scene
+        backgroundScene.setAttribute('class','palletTown')
+        travelCount++;
+    } else if (travelCount === 1) {
         backgroundScene.setAttribute('class', 'waterScene')
         travelCount++
-    } else if (travelCount === 1) {
+    } else if (travelCount === 2) {
         backgroundScene.classList.toggle('caveScene')
         travelCount++
-    } else if (travelCount === 2) {
+    } else if (travelCount === 3) {
         backgroundScene.classList.toggle('plainScene')
         travelCount++
     }
     console.log(travelCount)
+}
+const palletTownBTN = ()=>{
+    backgroundScene.setAttribute('class','palletTown')
+    travelCount = 0;
+}
+const sootopolisBTN = ()=>{
+    backgroundScene.setAttribute('class', 'waterScene')
+    travelCount = 1;
+}
+const moonCaveBTN = ()=>{
+    backgroundScene.classList.toggle('caveScene')
+}
+const safariBTN = ()=>{
+    backgroundScene.classList.toggle('plainScene')
 }
 //html location for player pkm skill 1 & 2, name, hp, atk, spd
 const displayStats = (temp) => {
@@ -237,11 +262,11 @@ const encounter = () => {
     //querySelect the html element for displaying player pkm
     //each travelCount lead to certain scene, and each scene has its own group of wild pkm
     // wildPkmHp.innerHTML = newWildPkmHp
-    if(travelCount === 0 || travelCount ===3) {
+    if(travelCount === 0) {
         // pkmList()
         //ranPkm represent the index of the wildPkm in each scene
         //ex: wildPkm.water[0] === mudkip
-        let ranPkm = Math.floor(Math.random() * (3))
+        let ranPkm = Math.floor(Math.random() * (2))
         //toggle to show/hide player pkm and wild pkm to mimic going in battle
         leftPkmHidden.setAttribute('class', 'leftPkm')
         rightPkmHidden.setAttribute('class', 'rightPkm')
@@ -281,6 +306,19 @@ const atkNoDefeat = (skillNum) => {
     wildPkmHp.innerHTML = `HP ${newWildPkmHp}`
     //delay then wild pkm attack
     //select from the wild pkm's moveset and attack back
+    if(travelCount = 0){
+    let ranIndex = Math.floor(Math.random() * (2))
+    if (player.team.hp > palletMoveset[ranIndex].power) {
+        player.team.hp -= palletMoveset[ranIndex].power
+        battleLog.append(`${currentWildPkm.name} used ${palletMoveset[ranIndex].skill} and did ${palletMoveset[ranIndex].power} damage`)
+        hp.innerHTML = `Hp ${player.team.hp}`
+    } else if (player.team.hp < palletMoveset[ranIndex].power) {
+        player.team.hp = 0;
+        hp.innerHTML = `Hp ${player.team.hp}`
+        battleLog.innerHTML = 'Blackout! Something went through your pockets and took your wealth. Go home and start again.'
+        setTimeout(resetButton, 2000)
+    }
+}else if(travelCount = 1){
     let ranIndex = Math.floor(Math.random() * (2))
     if (player.team.hp > waterMoveset[ranIndex].power) {
         player.team.hp -= waterMoveset[ranIndex].power
@@ -293,6 +331,7 @@ const atkNoDefeat = (skillNum) => {
         setTimeout(resetButton, 2000)
     }
 }
+}
 const atkDefeat = (skillNum) => {
     battleLog.innerHTML = `${player.team.name} used ${moveset[skillNum].skill} and did ${moveset[skillNum].power} damage to wild ${currentWildPkm.name}. ${currentWildPkm.name} fainted and dropped something shiny ($100)`
     player.cash += 100
@@ -304,7 +343,6 @@ const atkDefeat = (skillNum) => {
 }
 //battleLog displays all actions taken by player and wild pkm
 const thunderbolt = () => {
-
     //if wild pkm can survive the hit, decrease wild pkm hp
     if (newWildPkmHp > moveset[0].power) {
         atkNoDefeat(0)
@@ -353,4 +391,7 @@ const resetButton = () => {
     bottomLeft.setAttribute('class', 'bottomLeft')
     leftPkmHidden.setAttribute('class', 'leftPkmHidden')
     rightPkmHidden.setAttribute('class', 'rightPkmHidden')
+    startGame.setAttribute('class','startGame')
+    centerLeft.setAttribute('class','centerLeftHidden')
+    bottomLeft.setAttribute('class','bottomLeftHidden')
 }

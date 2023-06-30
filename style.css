@@ -2,18 +2,19 @@
     border:solid black;
     height:95vh;
     text-align:center;
+    background-color: rgba(247, 255, 196, 0.744);
 }
 .topContainer{
-    border:solid blue;
+    /* border:solid blue; */
     height:60%;
-    background-image: url('https://static.fandomspot.com/images/08/2071/00-featured-route-anime-pokemon-ostgame.jpg');
+    background-image: url('https://cdn.dribbble.com/users/5144936/screenshots/14761499/media/267a9de34fa2bf3d27909db2e78175f6.gif');
     background-size: cover;
     background-repeat:no-repeat;
     display:flex;
     justify-content:space-between;
 }
-.topContainer2{
-    border:solid blue;
+.palletTown{
+    /* border:solid blue; */
     height:60%;
     background-image: url('https://static.fandomspot.com/images/08/2071/00-featured-route-anime-pokemon-ostgame.jpg');
     background-size: cover;
@@ -22,7 +23,7 @@
     justify-content:space-between;
 }
 .waterScene{
-    border:solid blue;
+    /* border:solid blue; */
     height:60%;
     background-image: url('https://pm1.aminoapps.com/7243/46d5cfd672a1e2fca16c78d728e2b10cb57f7ce0r1-669-521v2_hq.jpg');
     background-size: cover;
@@ -31,7 +32,7 @@
     justify-content:space-between;
 }
 .caveScene{
-    border:solid blue;
+    /* border:solid blue; */
     height:60%;
     background-image: url('https://pm1.aminoapps.com/6617/79484ce2f6c171bc2e84f8c6cfa41a51a0cb0ead_hq.jpg');
     background-size: cover;
@@ -40,7 +41,7 @@
     justify-content:space-between;
 }
 .plainScene{
-    border:solid blue;
+    /* border:solid blue; */
     height:60%;
     background-image: url('https://legends.pokemon.com/en-us/assets/screens/928_p12_01.jpg');
     background-size: cover;
@@ -49,14 +50,14 @@
     justify-content:space-between;
 }
 .leftPkmHidden{
-    border:solid orange;
+    /* border:solid orange; */
     visibility:hidden;    
     display:flex;
     height:180px;
     align-self:flex-end;
 }
 .leftPkm{
-    border:solid red;
+    /* border:solid red; */
     visibility:visible;
     display:flex;
     height:180px;
@@ -68,7 +69,7 @@
 } */
 .animation1{
     border:solid orange;
-    height:80px;
+    height:70px;
 }
 /* .pikaImg{
 
@@ -93,7 +94,7 @@
     display:flex;
 }
 .rightPkm{
-    border:solid orange;
+    /* border:solid orange; */
     visibility:visible;
     height:180px;
     display:flex;
@@ -106,36 +107,56 @@
     align-self:flex-end;
 }
 .centerContainer{
-    border: solid blue;
+    border-top: solid black;
     height:15%;
     display:flex;
 }
 .centerLeft{
-    border:solid green;
+    border-right:solid green;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-around;
     width:30%;
+    margin-right:5px;
+    background-color:rgba(247, 255, 196, 0.744);
+}
+.centerLeftHidden{
+    border-right:solid green;
+    visibility:hidden;
+    display:flex;
+    flex-direction:column;
+    justify-content: space-around;
+    width:30%;
+    margin-right:5px;
     background-color:rgba(247, 255, 196, 0.744);
 }
 .centerMid{
-    border:solid green;
-    width:30%;
-    background-color:rgba(247, 255, 196, 0.744);}
-.text{
-    border:solid black;
-    height:70%;
-}
-
-.centerRight{
-    border:solid green;
+    border-left:solid green;
+    border-right:solid green;
     width:40%;
+    background-color:rgba(247, 255, 196, 0.744);
+}
+.text{
+    margin:5px;
+    display:flex;
+    align-items:center;
+    border:solid black 1.5px;
+    border-radius:5px;
+    height:60%;
+}
+.centerRight{
+    border-left:solid green;
+    width:30%;
+    margin-left:5px;
     background-color:rgba(247, 255, 196, 0.744);}
 .bottomContainer{
-    border:solid blue;
+    border-top:solid black;
     height:25%;
     display:flex;
     justify-content: space-between;
 }
 .bottomLeftHidden{
-    border:solid red;
+    /* border:solid red; */
     visibility:hidden;
     width:30%;
     display:flex;
@@ -143,27 +164,66 @@
     flex-wrap:wrap;
 }
 .bottomLeft{
-    border:solid red;
-    visibility:visible;
+    border-right:solid green;
     width:30%;
     display:flex;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items:center;
     flex-wrap:wrap;
+    background-image: url('https://d1lss44hh2trtw.cloudfront.net/resize?type=webp&url=https%3A%2F%2Fshacknews-www.s3.amazonaws.com%2Fassets%2Farticle%2F2020%2F03%2F13%2Fpokemon-mystery-dungeon-rescue-team-dx-review_feature.jpg&width=1032&sign=zOrWe9WPFGvXTIb-S_9TCv1STxFUlMKlI5YA77mQGY0');
+    background-size: 370px 200px;
 }
-.button,#button{
+.button{
+    width:100px;
+    height:30px;
+    opacity:70%;
+}
+.button:hover{
+    width:100px;
+    height:30px;
+    opacity:90%;
+}
+#buttonWild{
     width:100px;
     height:30px;
 }
 .confirmButtonHidden{
     visibility:hidden;
-    width:220px;
+    width:360px;
     height:30px;
 }
 .confirmButton{
-    border:solid red;
+    /* border:solid red; */
     visibility:visible;
-    width:220px;
+    width:360px;
     height:30px;
+}
+#confirm{
+    border:solid rgb(229, 222, 213);
+    border-radius:5px;
+    background-color:rgb(232, 227, 222);
+}
+.bottomCenter{
+    border-left:solid green;
+    border-right:solid green;
+    width:40%;
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    background-image: url('https://i.ytimg.com/vi/ZObWVuoajsY/maxresdefault.jpg');
+    background-size: 370px 200px;
+    margin-left:5px;
+    margin-right:5px;
+}
+.startGame{
+    width:120px;
+    height:40px;
+    visibility:visible;
+}
+.startGameHidden{
+    width:120px;
+    height:40px;
+    visibility:hidden;
 }
 .bottomRightHidden{
     border:solid red;
@@ -171,12 +231,15 @@
     width:30%;
 }
 .bottomRight{
-    border:solid red;
+    border-left:solid green;
     visibility: visible;
     width:30%;
+    background-image:url('https://www.bitmag.com.br/wp-content/uploads/2022/10/mewtwo-capa.jpg');
+    background-size: 360px 200px;
+    background-position: center center;
 }
 .wildPkmSkills{
-    border:solid orange;
+    /* border-bottom:solid orange; */
     height:40%;
     width:100%;
     display:flex;
@@ -185,14 +248,31 @@
     align-items: center;
 }
 .wildPkmSkill1,.wildPkmSkill2{
-    border:solid yellow;
+    border:dashed black 4px;
+    color:white;
+    font-weight: bold;
+    display:flex;
+    justify-content: center;
+    align-items:center;
 }
 .playerPkmSkills{
-    border:solid orange;
+    /* border:solid orange; */
     height:60%;
     width:100%;
     display:flex;
     justify-content:space-evenly;
     flex-wrap:wrap;
     align-items: center;
+}
+.button1,.button2,.pokeball{
+    opacity:60%;
+    background-color: rgba(137, 75, 196, 0.743);
+    color:white;
+    height:30px;
+    width:120px;
+}
+.button1:hover,.button2:hover,.pokeball:hover{
+    opacity:90%;
+    background-color: rgba(137, 75, 196, 0.743);
+    color:white;
 }

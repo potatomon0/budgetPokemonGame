@@ -40,40 +40,44 @@
                 <div class="wildPkmSpd">Speed</div>
             </div>
             <!-- Image src replaced for every battle encounter -->
-            <img src="https://25.media.tumblr.com/144d30a86c175d0d4843b26669913b30/tumblr_msu2d6x4WM1scncwdo1_500.gif" alt="" class="wildPkmImg">
+            <img src="" alt="" class="wildPkmImg">
             </div>
         </div>
             <div class="centerContainer">
-                <div class="centerLeft">
+                <div class="centerLeftHidden">
                     <div class="playerName"></div>
                     <div class="cash"></div>
-                    <div class="pokeball"></div>
+                    <div class="pokeballAmt"></div>
                     <div class="pkm"></div>
-                    
                 </div>
                 <div class="centerMid">
                     <div class="text"></div>
                     <div class="confirmButtonHidden">
-                    <button  class="button" onclick="confirm()">Confirm</button></div>
+                    <button  class="button" id = 'confirm' onclick="confirm()">Confirm</button></div>
                 </div>
                 <div class="centerRight">Pokemon in posession</div>
             </div>
             <div class="bottomContainer">
-                <div class="bottomLeft">    
+                <div class="bottomLeftHidden">    
                 <button class="button" onclick="resetButton()">Reset</button>
-                <button class="button" onclick='travel()'>Travel</button>
+                <!-- <button class="button" onclick='travel()'>Travel</button> -->
+                <div class="travel">
+                    <button class="button" id = "palletTownBTN" onclick="palletTownBTN()">Pallet Town</button>
+                    <button class="button" id = "sootopolisBTN" onclick="sootopolisBTN()">Sootopolis</button>
+                    <button class="button" id = "moonCaveBTN" onclick="moonCaveBTN()">Moon Cave</button>
+                    <button class="button" id = "safariBTN" onclick="safariBTN()">Safari</button>
+                </div>
                 <button class="button" onclick='encounter()'>Encounter</button>
                 <button class="button">Shop</button>
             </div>
             <div class="bottomCenter">
-                <input type="text" class = 'playerName' placeholder='Enter your name'>
-                <input type="submit">
+                <button class="startGame" onclick="start()">Start Game</button>
             </div>
                 <div class="bottomRightHidden">
                 <!-- generate atk moves in JS when clicking encounter-->
                 <div class="wildPkmSkills">
-                    <div class="wildPkmSkill1" id = 'button'></div>
-                    <div class="wildPkmSkill2" id = 'button'></div>
+                    <div class="wildPkmSkill1" id = 'buttonWild'></div>
+                    <div class="wildPkmSkill2" id = 'buttonWild'></div>
                 </div>
                 <div class="playerPkmSkills">
                 <button class="button1" id = 'button' onclick="thunderbolt()">Move 1</button>
@@ -87,6 +91,6 @@
             </div>
         </div>
         
-        <script src="app2.js" async defer></script>
+        <script src="app3.js" async defer></script>
     </body>
 </html>
