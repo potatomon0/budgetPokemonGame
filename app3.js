@@ -112,11 +112,6 @@ const pkmList = () => {
 //array of moveset so each pokemon can randomly generate and get two from this array
 let palletMoveset = [{ skill: 'Tackle', power: 1 }, { skill: 'Quick Attack', power: 3 }, { skill: 'Cut', power: 2 }, { skill: 'Pluck', power: 2 }]
 let waterMoveset = [{ skill: 'Mud Shot', power: 5 }, { skill: 'Bubble', power: 2 }, { skill: 'Water Gun', power: 3 }, { skill: 'Hyro Pump', power: 8 }, { skill: 'Splash', power: 0 }, { skill: 'Tackle', power: 1 }]
-const scene = [//water, cave, plain
-    'https://pm1.aminoapps.com/7243/46d5cfd672a1e2fca16c78d728e2b10cb57f7ce0r1-669-521v2_hq.jpg',
-    'https://static.wikia.nocookie.net/pokemon/images/a/a2/Stony_Cave.png/revision/latest?cb=20140727075925',
-    'https://preview.redd.it/a-very-limited-analysis-of-potential-signs-of-gameplay-v0-xbrpshcb65l81.png?width=640&crop=smart&auto=webp&s=28235b05631f5b9ed4049d3f77dc4a5cb67bfe32'
-]
 //if player defeat or catches a pkm, pikachu lv++, stats grow a certian %?
 //if player catches pkm, if player.team.length < 6 push to team else dont
 //always add new pkm caught to pkmStorage
@@ -140,8 +135,14 @@ let player = {//player initial setting
 }
 //the skill power calculation is the pokemon atk + the set amount for each skill
 let moveset = [{ skill: 'Thunderbolt', power: player.team.atk + 5 }, { skill: 'Iron Tail', power: player.team.atk + 3 }]
+let shopItems = {
+    pokeball: 100,
+    potion: -200,
+}
 let currentWildPkm;
 let newWildPkmHp;
+let newWildPkmName;
+let newWildPkm;
 let leftPkmHidden = document.querySelector('.leftPkmHidden')
 let rightPkmHidden = document.querySelector('.rightPkmHidden')
 let bottomRightHidden = document.querySelector('.bottomRightHidden')
@@ -280,6 +281,8 @@ const encounter = () => {
         //maybe toggle away the buttons during battle scene
         currentWildPkm = wildPKM.palletTown[ranPkm];
         newWildPkmHp = currentWildPkm.hp
+        newWildPkm = currentWildPkm
+        newWildPkmName = currentWildPkm.name
     } else if (travelCount === 1) {
         // pkmList()
         //ranPkm represent the index of the wildPkm in each scene
@@ -298,6 +301,8 @@ const encounter = () => {
         //maybe toggle away the buttons during battle scene
         currentWildPkm = wildPKM.water[ranPkm];
         newWildPkmHp = currentWildPkm.hp
+        newWildPkm = currentWildPkm
+        newWildPkmName = currentWildPkm.name
     }
 }
 const atkNoDefeat = (skillNum) => {
@@ -368,6 +373,32 @@ const ironTail = () => {
         atkDefeat(1);
     }
 }
+const catchPKM = ()=>{
+    console.log('here')
+    // let ranNum = Math.floor(Math.random()*(8-6)+6)
+    let ranNum = 5
+    if(newWildPkmHp >= ranNum){
+        // let catchRate = Math.floor(Math.random()*(8-6)+6)
+        let catchRate = 0.8
+        if(catchRate >= 0.7){
+            textbox.innerHTML = `Wild ${newWildPkmName} was caught!`
+            pkmStorage.push(newWildPkm)
+            console.log(pkmStorage)
+        }else{
+            textbox.innerHTML = `Failed to catch wild ${newWildPkmName}`
+        }
+    }else if(newWildPkmHp < ranNum){
+        // let catchRate = Math.floor(Math.random()*(8-6)+6)
+        let catchRate = 0.8
+        if(catchRate >= 0.4){
+            textbox.innerHTML = `Wild ${newWildPkmName} was caught!`
+            pkmStorage.push(newWildPkm)
+            console.log(pkmStorage)
+        }else(
+            textbox.innerHTML = `Failed to catch wild ${newWildPkmName}`
+        )
+    }
+}
 const confirm = () => {
     //confirm button
     // let bottomRight = document.querySelector('.bottomRight')
@@ -394,4 +425,7 @@ const resetButton = () => {
     startGame.setAttribute('class','startGame')
     centerLeft.setAttribute('class','centerLeftHidden')
     bottomLeft.setAttribute('class','bottomLeftHidden')
+}
+const shop = () =>{
+    
 }
